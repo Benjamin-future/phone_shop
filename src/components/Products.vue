@@ -1,5 +1,5 @@
 <script setup> 
-import {ref} from 'vue' 
+import {ref, onMounted} from 'vue' 
 import { useProductsStore } from '../stores/products' 
 import { useRouter } from 'vue-router'
 
@@ -7,6 +7,10 @@ import { useRouter } from 'vue-router'
 const router = useRouter() 
 const productsStore = useProductsStore() 
 const products= productsStore.products 
+
+onMounted(() => { 
+   productsStore.fetchProducts() // Fetch products when the component is mounted 
+});
  
 function view(productId){
      productsStore.updateSelectedProduct(productId) // keep track of the course selected 
